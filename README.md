@@ -1,2 +1,2 @@
 # ff-grid
-Minimal grid (like masonry), responsive oriented
+Minimal grid system : dependency free and responsive oriented
