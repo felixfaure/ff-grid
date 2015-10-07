@@ -6,17 +6,37 @@
         <meta name="author" content="David FELIX-FAURE - http://www.felix-faure.fr" />
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <link rel="stylesheet" href="../css/ff-grid.css">
+        <link rel="stylesheet" href="example.css">
     </head>
 
     <body>
         <main id="main" class="main" role="main">
-
+            <div class="grid">
+                <div class="grid_item grid_item-h2"></div>
+                <div class="grid_item grid_item-h3"></div>
+                <div class="grid_item"></div>
+                <div class="grid_item grid_item-h4"></div>
+                <div class="grid_item grid_item-h3"></div>
+                <div class="grid_item grid_item-h2"></div>
+                <div class="grid_item grid_item-h3"></div>
+                <div class="grid_item grid_item-h4"></div>
+                <div class="grid_item"></div>
+                <div class="grid_item grid_item-h3"></div>
+                <div class="grid_item grid_item-h2"></div>
+                <div class="grid_item"></div>
+                <div class="grid_item"></div>
+                <div class="grid_item grid_item-h4"></div>
+                <div class="grid_item grid_item-h4"></div>
+                <div class="grid_item grid_item-h2"></div>
+            </div>
         </main>
 
         <script src="../js/ff-grid.js"></script>
         <script>
-
+            ffgrid('.grid', '.grid_item', 25);
+            window.addEventListener('resize', function(){
+                ffgrid('.grid', '.grid_item', 25);
+            });
         </script>
     </body>
 </html>
