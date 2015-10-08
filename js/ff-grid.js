@@ -47,8 +47,7 @@
         //Options
         var args = {
             item: '.ffgrid_item',
-            autoGutter: true,
-            gutterH: 25, //Only if autoGutter false
+            gutterH: "auto", //number or "auto"
             animate: false
         };
         args = extend(args, options);
@@ -64,7 +63,7 @@
         var firstChildWidth = itemsNodeList[0].getBoundingClientRect().width;
         var cols = Math.max(Math.floor(containerWidth / firstChildWidth), 1);
         var gutterW = (containerWidth - cols * firstChildWidth) / (cols - 1);
-        var gutterH = args.autoGutter ? gutterW : args.gutterH;
+        var gutterH = args.gutterH == "auto" ? gutterW : args.gutterH;
         var count = 0;
         containerEle.style.position = 'relative';
 
