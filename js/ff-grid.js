@@ -122,7 +122,7 @@
 
         //Function when calculs are done
         if (typeof done === 'function') {
-            done(itemsNodeList);
+            done(itemsNodeList, containerEle);
         }
     }
 
