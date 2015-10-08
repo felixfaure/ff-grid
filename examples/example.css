@@ -37,11 +37,6 @@ html {
 	width: 30%;
     background-color: grey;
 }
-.ffgrid_item:before {
-    content: " ";
-    display: block;
-    padding-top: 60%;
-}
 .ffgrid_item:after {
     counter-increment: modules;
     content: counter(modules);
@@ -49,8 +44,12 @@ html {
     width: 100%;
     position: absolute;
     top: 10%;
-    left: 0;
     text-align: center;
+}
+.ffgrid_item:before {
+    content: " ";
+    display: block;
+    padding-top: 60%;
 }
 .ffgrid_item-h2:before {
     padding-top: 80%;
