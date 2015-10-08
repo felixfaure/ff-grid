@@ -27,22 +27,37 @@ html {
 .main {
     padding: 25px 25px 0 25px;
 }
-
-.grid_item {
-	width: 28%;
+.ffgrid {
+    width: 800px;
+    max-width: 100%;
+    margin: auto;
+    counter-reset: modules;
+}
+.ffgrid_item {
+	width: 30%;
     background-color: grey;
 }
-.grid_item:before {
+.ffgrid_item:before {
     content: " ";
     display: block;
     padding-top: 60%;
 }
-.grid_item-h2:before {
+.ffgrid_item:after {
+    counter-increment: modules;
+    content: counter(modules);
+    display: block;
+    width: 100%;
+    position: absolute;
+    top: 10%;
+    left: 0;
+    text-align: center;
+}
+.ffgrid_item-h2:before {
     padding-top: 80%;
 }
-.grid_item-h3:before {
+.ffgrid_item-h3:before {
     padding-top: 110%;
 }
-.grid_item-h4:before {
+.ffgrid_item-h4:before {
     padding-top: 150%;
 }
