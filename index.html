@@ -184,9 +184,9 @@ window.addEventListener('resize', function(){
                         duration: 500,
                         delay: index * 100
                     });
-                }}, function(items){
-                    ex4.className = ex4.className.replace('is-init', '');
-                    ex4.className = ex4.className.replace(/\s+$/gi, '') + ' ' + 'is-init';
+                }}, function(items,cont){
+                    cont.className = cont.className.replace('is-init', '');
+                    cont.className = cont.className.replace(/\s+$/gi, '') + ' ' + 'is-init';
                 });
             });
             window.addEventListener('resize', function(){
