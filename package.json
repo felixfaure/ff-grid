@@ -1,0 +1,31 @@
+{
+    "name": "ff-grid",
+    "version": "0.1.0",
+    "description": "Minimal grid system, zero dependency, responsive oriented",
+    "main": "js/ff-grid.js",
+    "scripts": {
+        "uglify": "uglifyjs ./js/ff-grid.js -o ./js/ff-grid.min.js --comments -m -c",
+        "build": "npm run uglify"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/felixfaure/ff-grid.git"
+    },
+    "keywords": [
+        "grid",
+        "js",
+        "minimal",
+        "responsive",
+        "ff-grid",
+        "felixfaure"
+    ],
+    "author": "David Félix-Faure <contact@felixfaure.fr> (http://www.felixfaure.fr)",
+    "license": "MIT",
+    "bugs": {
+    "url": "https://github.com/felixfaure/ff-grid/issues"
+    },
+        "homepage": "https://github.com/felixfaure/ff-grid",
+        "devDependencies": {
+        "uglify-js": "^2.4.24"
+    }
+}

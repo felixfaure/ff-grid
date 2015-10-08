@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="utf-8">
+        <title>ff-grid</title>
+        <meta name="author" content="David FELIX-FAURE - http://www.felix-faure.fr" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="stylesheet" href="examples/example.css">
+    </head>
+
+    <body>
+        <main id="main" class="main" role="main">
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            <div class="ffgrid">
+                <div class="ffgrid_item ffgrid_item-h2"></div>
+                <div class="ffgrid_item ffgrid_item-h3"></div>
+                <div class="ffgrid_item"></div>
+                <div class="ffgrid_item ffgrid_item-h4"></div>
+                <div class="ffgrid_item ffgrid_item-h3"></div>
+                <div class="ffgrid_item ffgrid_item-h2"></div>
+                <div class="ffgrid_item ffgrid_item-h3"></div>
+                <div class="ffgrid_item ffgrid_item-h4"></div>
+                <div class="ffgrid_item"></div>
+                <div class="ffgrid_item ffgrid_item-h3"></div>
+                <div class="ffgrid_item ffgrid_item-h2"></div>
+                <div class="ffgrid_item"></div>
+                <div class="ffgrid_item"></div>
+                <div class="ffgrid_item ffgrid_item-h4"></div>
+                <div class="ffgrid_item ffgrid_item-h4"></div>
+                <div class="ffgrid_item ffgrid_item-h2"></div>
+            </div>
+        </main>
+
+        <script src="js/ff-grid.js"></script>
+        <script>
+            ffgrid('.ffgrid');
+            window.addEventListener('resize', function(){
+                ffgrid('.ffgrid');
+            });
+        </script>
+    </body>
+</html>
