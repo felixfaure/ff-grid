@@ -36,10 +36,26 @@
         }
     }
 
-    function ffgrid (gridContainer, itemSelector, gutterH, animate, done) {
-        var containerEle = gridContainer instanceof Node ? gridContainer : document.querySelector(gridContainer);
+    function extend(origOptions, userOptions){
+        var extendOptions = {}, attrname;
+        for (attrname in origOptions) { extendOptions[attrname] = origOptions[attrname]; }
+        for (attrname in userOptions) { extendOptions[attrname] = userOptions[attrname]; }
+        return extendOptions;
+    }
+
+    function ffgrid (container, options, done) {
+        //Options
+        var args = {
+            item: '.ffgrid_item',
+            autoGutter: true,
+            gutterH: 25, //Only if autoGutter false
+            animate: false
+        };
+        args = extend(args, options);
+
+        var containerEle = container instanceof Node ? container : document.querySelector(container);
         if (!containerEle) { return false; }
-        var itemsNodeList = containerEle.querySelectorAll(itemSelector);
+        var itemsNodeList = containerEle.querySelectorAll(args.item);
         if (itemsNodeList.length === 0) {
             containerEle.style.height = "0px";
             return false;
@@ -48,7 +64,7 @@
         var firstChildWidth = itemsNodeList[0].getBoundingClientRect().width;
         var cols = Math.max(Math.floor(containerWidth / firstChildWidth), 1);
         var gutterW = (containerWidth - cols * firstChildWidth) / (cols - 1);
-        var gutterH = (typeof gutterH === 'number' && isFinite(gutterH) && Math.floor(gutterH) === gutterH) ? gutterH : 25;
+        var gutterH = args.autoGutter ? gutterW : args.gutterH;
         var count = 0;
         containerEle.style.position = 'relative';
 
@@ -70,14 +86,14 @@
             var posX = itemsPosX[itemIndex];
             var posY = itemsGutter[itemIndex];
             item.style.position = 'absolute';
-            if (!animate && transformProp) {
+            if (!args.animate && transformProp) {
                 item.style[transformProp] = 'translate3D(' + posX + 'px,' + posY + 'px, 0)';
             }
             //   itemsGutter[itemIndex] += item.getBoundingClientRect().height + gutter;
             itemsGutter[itemIndex] += item.getBoundingClientRect().height + gutterH;
             count = count + 1;
-            if (animate) {
-                return animate(item, posX, posY, count);
+            if (args.animate) {
+                return args.animate(item, posX, posY, count);
             }
         });
 
