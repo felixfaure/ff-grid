@@ -108,7 +108,7 @@ window.addEventListener('resize', function(){
             </div>
             <pre><code class="language-javascript">ffgrid('#ex3',{ext: [true, false]});</code></pre>
 
-            <h3>Animation:</h3>
+            <h3>Animation and done function:</h3>
             <p>To animate the position you can use CSS transtitions or an extarnal library like <a href="http://dynamicsjs.com/">Dynamics.js</a> or <a href="http://julian.com/research/velocity/">velocity</a>. This example use velocity:</p>
             <p><button id="show_anim_4">Show animation</button></p>
             <div class="ffgrid" id="ex4">
@@ -158,7 +158,10 @@ window.addEventListener('resize', function(){
         duration: 500,
         delay: index * 100
     });
-}});</code></pre>
+}}, function(items,cont) {
+    //add a class when the grid is initialized
+    cont.className = cont.className.replace('is-init', '').replace(/\s+$/gi, '') + ' is-init';
+});</code></pre>
         </main>
 
         <script src="examples/prism.js"></script>
@@ -184,12 +187,11 @@ window.addEventListener('resize', function(){
                         duration: 500,
                         delay: index * 100
                     });
-                }}, function(items,cont){
-                    cont.className = cont.className.replace('is-init', '');
-                    cont.className = cont.className.replace(/\s+$/gi, '') + ' ' + 'is-init';
+                }}, function(items,cont) {
+                    cont.className = cont.className.replace('is-init', '').replace(/\s+$/gi, '') + ' is-init';
                 });
             });
-            window.addEventListener('resize', function(){
+            window.addEventListener('resize', function() {
                 ffgrid('#ex1');
                 ffgrid('#ex2',{gutterH: 5});
                 ffgrid('#ex3',{ext: [true, false]});
