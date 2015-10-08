@@ -22,10 +22,10 @@
     "author": "David Félix-Faure <contact@felixfaure.fr> (http://www.felixfaure.fr)",
     "license": "MIT",
     "bugs": {
-    "url": "https://github.com/felixfaure/ff-grid/issues"
+        "url": "https://github.com/felixfaure/ff-grid/issues"
     },
-        "homepage": "https://github.com/felixfaure/ff-grid",
-        "devDependencies": {
+    "homepage": "https://github.com/felixfaure/ff-grid",
+    "devDependencies": {
         "uglify-js": "^2.4.24"
     }
 }
