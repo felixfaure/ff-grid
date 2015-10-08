@@ -24,7 +24,7 @@
     "bugs": {
         "url": "https://github.com/felixfaure/ff-grid/issues"
     },
-    "homepage": "https://github.com/felixfaure/ff-grid",
+    "homepage": "http://felixfaure.github.io/ff-grid/",
     "devDependencies": {
         "uglify-js": "^2.4.24"
     }
