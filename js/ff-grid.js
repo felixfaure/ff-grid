@@ -88,7 +88,7 @@
             item.style.position = 'absolute';
             if (!args.animate && transformProp) {
                 item.style[transformProp] = 'translate3D(' + posX + 'px,' + posY + 'px, 0)';
-            } else if(!transformProp) {
+            } else if(!args.animate && !transformProp) {
                 item.style['left'] = posX + 'px';
                 item.style['top'] = posY + 'px';
             }
