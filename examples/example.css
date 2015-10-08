@@ -158,6 +158,13 @@ sub {
     padding-top: 150%;
 }
 
+#ex2 .ffgrid_item {
+	width: 22%;
+}
+#ex3 {
+	background-color: #F8F8F8;
+	border: 1px dashed grey;
+}
 #ex3 .ffgrid_item {
 	width: 26%;
 }

@@ -89,12 +89,14 @@ window.addEventListener('resize', function(){
                 <div class="ffgrid_item ffgrid_item-h3"></div>
                 <div class="ffgrid_item ffgrid_item-h2"></div>
                 <div class="ffgrid_item ffgrid_item-h3"></div>
-                <div class="ffgrid_item ffgrid_item-h4"></div>
+                <div class="ffgrid_item ffgrid_item-h3"></div>
+                <div class="ffgrid_item ffgrid_item-h3"></div>
+                <div class="ffgrid_item ffgrid_item-h3"></div>
                 <div class="ffgrid_item"></div>
             </div>
             <pre><code class="language-javascript">ffgrid('#ex2',{gutterH: 5});</code></pre>
 
-            <h3>External horizontal gutters:</h3>
+            <h3>External horizontal and vertical gutters (first boolean is horizontal and second is vertical):</h3>
             <div class="ffgrid" id="ex3">
                 <div class="ffgrid_item ffgrid_item-h2"></div>
                 <div class="ffgrid_item ffgrid_item-h3"></div>
@@ -102,11 +104,8 @@ window.addEventListener('resize', function(){
                 <div class="ffgrid_item ffgrid_item-h4"></div>
                 <div class="ffgrid_item ffgrid_item-h3"></div>
                 <div class="ffgrid_item ffgrid_item-h2"></div>
-                <div class="ffgrid_item ffgrid_item-h3"></div>
-                <div class="ffgrid_item ffgrid_item-h4"></div>
-                <div class="ffgrid_item"></div>
             </div>
-            <pre><code class="language-javascript">ffgrid('#ex3',{ext: [true, false]});</code></pre>
+            <pre><code class="language-javascript">ffgrid('#ex3',{ext: [true, true]});</code></pre>
 
             <h3>Animation and done function:</h3>
             <p>To animate the position you can use CSS transtitions or an extarnal library like <a href="http://dynamicsjs.com/">Dynamics.js</a> or <a href="http://julian.com/research/velocity/">velocity</a>. This example use velocity:</p>
@@ -170,7 +169,7 @@ window.addEventListener('resize', function(){
         <script>
             ffgrid('#ex1');
             ffgrid('#ex2',{gutterH: 5});
-            ffgrid('#ex3',{ext: [true, false]});
+            ffgrid('#ex3',{ext: [true, true]});
             btnEx4 = document.getElementById('show_anim_4');
             ex4 = document.getElementById('ex4');
             btnEx4.addEventListener('click', function (event) {
@@ -194,7 +193,7 @@ window.addEventListener('resize', function(){
             window.addEventListener('resize', function() {
                 ffgrid('#ex1');
                 ffgrid('#ex2',{gutterH: 5});
-                ffgrid('#ex3',{ext: [true, false]});
+                ffgrid('#ex3',{ext: [true, true]});
                 if (ex4.classList && ex4.classList.contains('is-init') || new RegExp('(^| )' + 'is-init' + '( |$)', 'gi').test(ex4.className))
                     ffgrid(ex4);
             });
