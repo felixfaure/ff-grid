@@ -23,17 +23,110 @@ html {
 	box-sizing: inherit;
 }
 
+/* Basics styles */
+html {
+	width: 100%;
+	font-size: 100%;
+	-webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+}
+
+body {
+	width: 100%;
+	background-color: #fff;
+	color: #000;
+	font-family: 'Lato', sans-serif;
+	font-size: 1em;
+	line-height: 1.5;
+}
+
+::-moz-selection {
+	background: #000;
+	text-shadow: none;
+	color: #fff;
+}
+::selection {
+	background: #000;
+	text-shadow: none;
+	color: #fff;
+}
+
+img, table, td, blockquote, code, pre, textarea, input, video, svg {
+	max-width: 100%;
+}
+
+h1, h2, h3, h4, h5, h6, a, textarea, p {
+	word-wrap: break-word;
+}
+
+@-webkit-viewport{ width: device-width }
+@-moz-viewport{ width: device-width }
+@-ms-viewport{ width: device-width }
+@-o-viewport{ width: device-width }
+@viewport{ width: device-width }
+
+/* Typo */
+p,
+ul,
+ol,
+pre,
+pre[class*="language-"],
+table {
+    font-size: 1em;
+    line-height: 1.5;
+    margin: 1.5em 0;
+}
+p:last-child,
+ul:last-child,
+ol:last-child,
+pre:last-child,
+pre[class*="language-"]:last-child,
+table:last-child {
+    margin-bottom: 0;
+}
+p:first-child,
+ul:first-child,
+ol:first-child,
+pre:first-child,
+pre[class*="language-"]:first-child,
+table:first-child {
+    margin-top: 0;
+}
+
+b, strong {
+    font-weight: 700;
+}
+i, em {
+	font-style: italic;
+}
+
+sub, sup {
+    position: relative;
+    font-size: .75em;
+    vertical-align: 0;
+}
+sup {
+  bottom: 1ex;
+}
+sub {
+  top: .5ex;
+}
+
 /* Example */
 .main {
 	width: 800px;
     max-width: 100%;
     margin: auto;
 	padding: 25px;
-    counter-reset: modules;
+}
+.ffgrid {
+	counter-reset: modules;
 }
 .ffgrid_item {
+	position: relative;
 	width: 30%;
-    background-color: grey;
+    background-color: #00D8A8;
+	border-radius: 2px;
 }
 .ffgrid_item:after {
     counter-increment: modules;
@@ -41,8 +134,13 @@ html {
     display: block;
     width: 100%;
     position: absolute;
-    top: 10%;
+    top: 50%;
+	transform: translateY(-50%);
     text-align: center;
+	font-size: 100px;
+	font-weight: 700;
+	color: #fff;
+	/*color: rgba(255,255,255,.9);*/
 }
 .ffgrid_item:before {
     content: " ";
@@ -57,4 +155,35 @@ html {
 }
 .ffgrid_item-h4:before {
     padding-top: 150%;
+}
+
+#ex3 .ffgrid_item {
+	width: 26%;
+}
+#ex4 {
+	visibility: hidden;
+	height: 1px;
+	overflow: hidden;
+}
+#ex4.is-init {
+	visibility: visible;
+	overflow: visible;
+}
+#ex4 .ffgrid_item {
+	width: 16%;
+	/*opacity: 0;*/
+}
+#ex4 .ffgrid_item:after {
+	font-size: 50px;
+}
+
+@media screen and (max-width: 800px) {
+	.ffgrid_item:after {
+		font-size: 20px;
+		font-size: 12vw;
+	}
+	#ex4 .ffgrid_item:after {
+		font-size: 15px;
+		font-size: 6vw;
+	}
 }

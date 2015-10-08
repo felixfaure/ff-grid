@@ -2,17 +2,69 @@
 <html lang="fr">
     <head>
         <meta charset="utf-8">
-        <title>ff-grid</title>
+        <title>FF-GRID</title>
         <meta name="author" content="David FELIX-FAURE - http://www.felix-faure.fr" />
         <meta name="viewport" content="width=device-width, initial-scale=1">
-
+        <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="examples/prism.css">
         <link rel="stylesheet" href="examples/example.css">
     </head>
 
     <body>
         <main id="main" class="main" role="main">
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-            <div class="ffgrid">
+            <header>
+                <h1>FF-GRID</h1>
+                <p>FF-Grid is a minimal Javascript plugin to create grids.</p>
+            </header>
+
+            <h2>Download</h2>
+            <p>Download on <a href="https://github.com/felixfaure/ff-grid">GitHub</a></p>
+
+            <h2>Features</h2>
+            <ul>
+                <li>Minimal, less than 2kb!</li>
+                <li>Dependency free</li>
+                <li>Responsive oriented</li>
+                <li>Animation ready</li>
+                <li>Automatic calculation of gutter width</li>
+            </ul>
+
+            <h2>Usage</h2>
+            <p>Set up your HTML markup.</p>
+            <pre><code class="language-html">&lt;div class="ffgrid"&gt;
+    &lt;div class="ffgrid_item"&gt;&lt;/div&gt;
+    &lt;div class="ffgrid_item"&gt;&lt;/div&gt;
+    &lt;div class="ffgrid_item"&gt;&lt;/div&gt;
+    &lt;div class="ffgrid_item"&gt;&lt;/div&gt;
+    &lt;div class="ffgrid_item"&gt;&lt;/div&gt;
+    &lt;div class="ffgrid_item"&gt;&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+            <p>Add ff-grid.min.js before your closing <body> tag.</p>
+            <pre><code class="language-html">&lt;script type="text/javascript" src="js/ff-grid.js"&gt;&lt;/script&gt;</code></pre>
+            <p>Initialize your grid in your script file or an inline script tag.</p>
+            <pre><code class="language-javascript">ffgrid('.ffgrid', options, done);</code></pre>
+
+            <h2>Options</h2>
+            <p>The second parameter "options" is used to set several options:</p>
+<pre><code class="language-javascript">//Default options
+{
+    item: '.ffgrid_item', //string
+    gutterH: "auto", //number or "auto"
+    animate: false, //function
+    ext: [false, false] //array of 2 booleans
+};</code></pre>
+            <p>The final parameter "done" is used to run a function once the grid has been initialized.</p>
+
+            <h2>Responsive</h2>
+            <p>While FF-Grid is ready for responsive it doesn't incorporate the resize listener, this allows you to adjust it as you like (with bouncing, etc.).</p>
+            <p>For the grid fits the resizing you need to add this code:</p>
+            <pre><code class="language-javascript">window.addEventListener('resize', function(){
+    ffgrid('.ffgrid',options,done);
+});</code></pre>
+
+            <h2>Examples</h2>
+            <h3>Basic responsive:</h3>
+            <div class="ffgrid" id="ex1">
                 <div class="ffgrid_item ffgrid_item-h2"></div>
                 <div class="ffgrid_item ffgrid_item-h3"></div>
                 <div class="ffgrid_item"></div>
@@ -22,21 +74,127 @@
                 <div class="ffgrid_item ffgrid_item-h3"></div>
                 <div class="ffgrid_item ffgrid_item-h4"></div>
                 <div class="ffgrid_item"></div>
-                <div class="ffgrid_item ffgrid_item-h3"></div>
-                <div class="ffgrid_item ffgrid_item-h2"></div>
-                <div class="ffgrid_item"></div>
-                <div class="ffgrid_item"></div>
-                <div class="ffgrid_item ffgrid_item-h4"></div>
-                <div class="ffgrid_item ffgrid_item-h4"></div>
-                <div class="ffgrid_item ffgrid_item-h2"></div>
             </div>
+            <pre><code class="language-javascript">ffgrid('#ex1');
+window.addEventListener('resize', function(){
+    ffgrid('#ex1');
+});</code></pre>
+
+            <h3>Custom vertical gutter:</h3>
+            <div class="ffgrid" id="ex2">
+                <div class="ffgrid_item ffgrid_item-h2"></div>
+                <div class="ffgrid_item ffgrid_item-h3"></div>
+                <div class="ffgrid_item"></div>
+                <div class="ffgrid_item ffgrid_item-h4"></div>
+                <div class="ffgrid_item ffgrid_item-h3"></div>
+                <div class="ffgrid_item ffgrid_item-h2"></div>
+                <div class="ffgrid_item ffgrid_item-h3"></div>
+                <div class="ffgrid_item ffgrid_item-h4"></div>
+                <div class="ffgrid_item"></div>
+            </div>
+            <pre><code class="language-javascript">ffgrid('#ex2',{gutterH: 5});</code></pre>
+
+            <h3>External horizontal gutters:</h3>
+            <div class="ffgrid" id="ex3">
+                <div class="ffgrid_item ffgrid_item-h2"></div>
+                <div class="ffgrid_item ffgrid_item-h3"></div>
+                <div class="ffgrid_item"></div>
+                <div class="ffgrid_item ffgrid_item-h4"></div>
+                <div class="ffgrid_item ffgrid_item-h3"></div>
+                <div class="ffgrid_item ffgrid_item-h2"></div>
+                <div class="ffgrid_item ffgrid_item-h3"></div>
+                <div class="ffgrid_item ffgrid_item-h4"></div>
+                <div class="ffgrid_item"></div>
+            </div>
+            <pre><code class="language-javascript">ffgrid('#ex3',{ext: [true, false]});</code></pre>
+
+            <h3>Animation:</h3>
+            <p>To animate the position you can use CSS transtitions or an extarnal library like <a href="http://dynamicsjs.com/">Dynamics.js</a> or <a href="http://julian.com/research/velocity/">velocity</a>. This example use velocity:</p>
+            <p><button id="show_anim_4">Show animation</button></p>
+            <div class="ffgrid" id="ex4">
+                <div class="ffgrid_item ffgrid_item-h2"></div>
+                <div class="ffgrid_item ffgrid_item-h3"></div>
+                <div class="ffgrid_item"></div>
+                <div class="ffgrid_item ffgrid_item-h4"></div>
+                <div class="ffgrid_item ffgrid_item-h3"></div>
+                <div class="ffgrid_item ffgrid_item-h2"></div>
+                <div class="ffgrid_item ffgrid_item-h3"></div>
+                <div class="ffgrid_item ffgrid_item-h4"></div>
+                <div class="ffgrid_item"></div>
+                <div class="ffgrid_item ffgrid_item-h4"></div>
+                <div class="ffgrid_item ffgrid_item-h3"></div>
+                <div class="ffgrid_item ffgrid_item-h2"></div>
+                <div class="ffgrid_item ffgrid_item-h3"></div>
+                <div class="ffgrid_item ffgrid_item-h4"></div>
+                <div class="ffgrid_item"></div>
+                <div class="ffgrid_item ffgrid_item-h4"></div>
+                <div class="ffgrid_item ffgrid_item-h3"></div>
+                <div class="ffgrid_item ffgrid_item-h2"></div>
+                <div class="ffgrid_item ffgrid_item-h3"></div>
+                <div class="ffgrid_item ffgrid_item-h4"></div>
+                <div class="ffgrid_item"></div>
+                <div class="ffgrid_item ffgrid_item-h4"></div>
+                <div class="ffgrid_item ffgrid_item-h3"></div>
+                <div class="ffgrid_item ffgrid_item-h2"></div>
+                <div class="ffgrid_item ffgrid_item-h3"></div>
+                <div class="ffgrid_item ffgrid_item-h4"></div>
+                <div class="ffgrid_item"></div>
+                <div class="ffgrid_item ffgrid_item-h4"></div>
+                <div class="ffgrid_item ffgrid_item-h3"></div>
+                <div class="ffgrid_item ffgrid_item-h2"></div>
+                <div class="ffgrid_item ffgrid_item-h3"></div>
+                <div class="ffgrid_item ffgrid_item-h4"></div>
+                <div class="ffgrid_item"></div>
+            </div>
+            <pre><code class="language-javascript">ffgrid('#ex4',{animate: function(item, x, y, index) {
+    item.style.opacity = 0;
+    Velocity(item, {
+        translateX: [x, x-10],
+        translateY: [y, y+50],
+        rotateZ: ["0deg", "20deg"],
+        scale: [1, .5],
+        opacity: 1
+    }, {
+        duration: 500,
+        delay: index * 100
+    });
+}});</code></pre>
         </main>
 
+        <script src="examples/prism.js"></script>
+        <script src="examples/velocity.min.js"></script>
         <script src="js/ff-grid.js"></script>
         <script>
-            ffgrid('.ffgrid',{ext:[true,false]});
+            ffgrid('#ex1');
+            ffgrid('#ex2',{gutterH: 5});
+            ffgrid('#ex3',{ext: [true, false]});
+            btnEx4 = document.getElementById('show_anim_4');
+            ex4 = document.getElementById('ex4');
+            btnEx4.addEventListener('click', function (event) {
+                event.preventDefault();
+                ffgrid(ex4,{animate: function(item, x, y, index) {
+                    item.style.opacity = 0;
+                    Velocity(item, {
+                        translateX: [x, x-10],
+                        translateY: [y, y+50],
+                        rotateZ: ["0deg", "20deg"],
+                        scale: [1, .5],
+                        opacity: 1
+                    }, {
+                        duration: 500,
+                        delay: index * 100
+                    });
+                }}, function(items){
+                    ex4.className = ex4.className.replace('is-init', '');
+                    ex4.className = ex4.className.replace(/\s+$/gi, '') + ' ' + 'is-init';
+                });
+            });
             window.addEventListener('resize', function(){
-                ffgrid('.ffgrid',{ext:[true,false]});
+                ffgrid('#ex1');
+                ffgrid('#ex2',{gutterH: 5});
+                ffgrid('#ex3',{ext: [true, false]});
+                if (ex4.classList && ex4.classList.contains('is-init') || new RegExp('(^| )' + 'is-init' + '( |$)', 'gi').test(ex4.className))
+                    ffgrid(ex4);
             });
         </script>
     </body>
