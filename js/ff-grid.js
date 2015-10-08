@@ -1,7 +1,7 @@
 /**
 * ff-grid.js
 *
-* @fileoverview Minimal grid zero dependency
+* @fileoverview Minimal grid zero dependency responsive oriented
 *
 * @author David Félix-Faure
 * @author http://www.felixfaure.fr/
@@ -11,6 +11,7 @@
 
     'use strict';
 
+    //Vendor prefix transform property
     var transformProp;
     (function () {
         var style = document.createElement('a').style;
@@ -26,6 +27,7 @@
         }
     }());
 
+    //Foreach function
     function forEach (arr, cb) {
         if (arr) {
             for (var i = 0, len = arr.length; i < len; i++) {
@@ -36,6 +38,7 @@
         }
     }
 
+    //Extend function
     function extend(origOptions, userOptions){
         var extendOptions = {}, attrname;
         for (attrname in origOptions) { extendOptions[attrname] = origOptions[attrname]; }
@@ -43,31 +46,39 @@
         return extendOptions;
     }
 
+    //Main function
     function ffgrid (container, options, done) {
-        //Options
+        //Default Options
         var args = {
-            item: '.ffgrid_item',
+            item: '.ffgrid_item', //String
             gutterH: "auto", //number or "auto"
-            animate: false,
-            ext: [false,false]
+            animate: false, //Boolean
+            ext: [false,false] //Array of 2 booleans
         };
+        //Fusion with user options
         args = extend(args, options);
 
+        //Get container element (with string or node element)
         var containerEle = container instanceof Node ? container : document.querySelector(container);
         if (!containerEle) { return false; }
+        //Get items
         var itemsNodeList = containerEle.querySelectorAll(args.item);
         if (itemsNodeList.length === 0) {
             containerEle.style.height = "0px";
             return false;
         }
+        //Get variables
         var containerWidth = containerEle.getBoundingClientRect().width;
         var firstChildWidth = itemsNodeList[0].getBoundingClientRect().width;
         var cols = Math.max(Math.floor(containerWidth / firstChildWidth), 1);
         var gutterW = (containerWidth - cols * firstChildWidth) / (cols - 1 + (args.ext[0] ? 2 : 0));
         var gutterH = args.gutterH == "auto" ? gutterW : args.gutterH;
         var count = 0;
+
+        //Style relative for container
         containerEle.style.position = 'relative';
 
+        //Initials Calculs
         var itemsGutter = [];
         var itemsPosX = [];
         for ( var g = 0 ; g < cols ; ++g ) {
@@ -75,6 +86,7 @@
             itemsGutter.push((args.ext[1] ? gutterH : 0));
         }
 
+        //Calcul of the items position
         forEach(itemsNodeList, function (item) {
             var itemIndex = itemsGutter
             .slice(0)
@@ -99,15 +111,16 @@
             }
         });
 
+        //Container height
         var containerHeight = itemsGutter
         .slice(0)
         .sort(function (a, b) {
             return a - b;
         })
         .pop();
-
         containerEle.style.height = containerHeight - (args.ext[1] ? 0 : gutterH) + 'px';
 
+        //Function when calculs are done
         if (typeof done === 'function') {
             done(itemsNodeList);
         }
