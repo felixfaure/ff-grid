@@ -48,7 +48,8 @@
         var args = {
             item: '.ffgrid_item',
             gutterH: "auto", //number or "auto"
-            animate: false
+            animate: false,
+            ext: [false,false]
         };
         args = extend(args, options);
 
@@ -62,7 +63,7 @@
         var containerWidth = containerEle.getBoundingClientRect().width;
         var firstChildWidth = itemsNodeList[0].getBoundingClientRect().width;
         var cols = Math.max(Math.floor(containerWidth / firstChildWidth), 1);
-        var gutterW = (containerWidth - cols * firstChildWidth) / (cols - 1);
+        var gutterW = (containerWidth - cols * firstChildWidth) / (cols - 1 + (args.ext[0] ? 2 : 0));
         var gutterH = args.gutterH == "auto" ? gutterW : args.gutterH;
         var count = 0;
         containerEle.style.position = 'relative';
@@ -70,8 +71,8 @@
         var itemsGutter = [];
         var itemsPosX = [];
         for ( var g = 0 ; g < cols ; ++g ) {
-            itemsPosX.push(g * firstChildWidth + g * gutterW);
-            itemsGutter.push(0);
+            itemsPosX.push(g * firstChildWidth + (g + (args.ext[0] ? 1 : 0)) * gutterW);
+            itemsGutter.push((args.ext[1] ? gutterH : 0));
         }
 
         forEach(itemsNodeList, function (item) {
@@ -88,7 +89,6 @@
             if (!args.animate && transformProp) {
                 item.style[transformProp] = 'translate3D(' + posX + 'px,' + posY + 'px, 0)';
             }
-            //   itemsGutter[itemIndex] += item.getBoundingClientRect().height + gutter;
             itemsGutter[itemIndex] += item.getBoundingClientRect().height + gutterH;
             count = count + 1;
             if (args.animate) {
@@ -103,7 +103,7 @@
         })
         .pop();
 
-        containerEle.style.height = containerHeight + 'px';
+        containerEle.style.height = containerHeight - (args.ext[1] ? 0 : gutterH) + 'px';
 
         if (typeof done === 'function') {
             done(itemsNodeList);
