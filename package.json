@@ -1,6 +1,6 @@
 {
     "name": "ff-grid",
-    "version": "0.1.0",
+    "version": "1.0.0",
     "description": "Minimal grid system, zero dependency, responsive oriented",
     "main": "js/ff-grid.js",
     "scripts": {
