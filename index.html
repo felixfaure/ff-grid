@@ -42,7 +42,12 @@
             <p>Add ff-grid.min.js before your closing <body> tag.</p>
             <pre><code class="language-html">&lt;script type="text/javascript" src="js/ff-grid.js"&gt;&lt;/script&gt;</code></pre>
             <p>Initialize your grid in your script file or an inline script tag.</p>
-            <pre><code class="language-javascript">ffgrid('.ffgrid', options, done);</code></pre>
+            <pre><code class="language-javascript">ffgrid(container, options, done);</code></pre>
+            <ul>
+                <li>container: required, a string (".ffgrid" for example) or a node element.</li>
+                <li>options: optional, an option object, see below.</li>
+                <li>done: optional, a callback function.</li>
+            </ul>
 
             <h2>Options</h2>
             <p>The second parameter "options" is used to set several options:</p>
@@ -53,7 +58,12 @@
     animate: false, //function
     ext: [false, false] //array of 2 booleans
 };</code></pre>
-            <p>The final parameter "done" is used to run a function once the grid has been initialized.</p>
+            <ul>
+                <li>item: the class of the items of the grid (don't forgot the dot).</li>
+                <li>gutterH: the height of the vertical gutter. A number of pixel or "auto". If "auto" the vertical gutter will be equal to the horizontal gutter.</li>
+                <li>animate: a function that takes 3 parameters (item, x, y, index). See example in the demo section.</li>
+                <li>ext: a array of 2 booleans. First boolean is for horizontal gutter and second is for vertical gutter. If true there are external gutters. See example in the demo section.</li>
+            </ul>
 
             <h2>Responsive</h2>
             <p>While FF-Grid is ready for responsive it doesn't incorporate the resize listener, this allows you to adjust it as you like (with bouncing, etc.).</p>
