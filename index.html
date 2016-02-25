@@ -177,14 +177,14 @@ window.addEventListener('resize', function(){
         <script src="examples/velocity.min.js"></script>
         <script src="js/ff-grid.js"></script>
         <script>
-            ffgrid({cont:'#ex1'});
-            ffgrid({cont:'#ex2', gutter: 5});
-            ffgrid({cont:'#ex3', ext: [true, true]});
+            ffgrid({cont:'#ex1', item:'.ffgrid_item'});
+            ffgrid({cont:'#ex2', item:'.ffgrid_item', gutter: 5});
+            ffgrid({cont:'#ex3', item:'.ffgrid_item', ext: [true, true]});
             btnEx4 = document.getElementById('show_anim_4');
             ex4 = document.getElementById('ex4');
             btnEx4.addEventListener('click', function (event) {
                 event.preventDefault();
-                ffgrid({cont:ex4, animate: function(item, x, y, index) {
+                ffgrid({cont:ex4, item:'.ffgrid_item', animate: function(item, x, y, index) {
                     item.style.opacity = 0;
                     Velocity(item, {
                         translateX: [x, x-10],
@@ -201,11 +201,11 @@ window.addEventListener('resize', function(){
                 });
             });
             window.addEventListener('resize', function() {
-                ffgrid({cont:'#ex1'});
-                ffgrid({cont:'#ex2', gutter: 5});
-                ffgrid({cont:'#ex3', ext: [true, true]});
+                ffgrid({cont:'#ex1', item:'.ffgrid_item'});
+                ffgrid({cont:'#ex2', item:'.ffgrid_item', gutter: 5});
+                ffgrid({cont:'#ex3', item:'.ffgrid_item', ext: [true, true]});
                 if (ex4.classList && ex4.classList.contains('is-init') || new RegExp('(^| )' + 'is-init' + '( |$)', 'gi').test(ex4.className))
-                  ffgrid({cont:ex4});
+                  ffgrid({cont:ex4, item:'.ffgrid_item'});
             });
         </script>
     </body>
