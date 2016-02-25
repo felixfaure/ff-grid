@@ -196,9 +196,9 @@ window.addEventListener('resize', function(){
                         duration: 500,
                         delay: index * 100
                     });
-                }}, function(items,cont) {
+                }, done:function(items,cont) {
                     cont.className = cont.className.replace('is-init', '').replace(/\s+$/gi, '') + ' is-init';
-                });
+                }});
             });
             window.addEventListener('resize', function() {
                 ffgrid({cont:'#ex1', item:'.ffgrid_item'});
