@@ -48,6 +48,9 @@
 
     //Main function
     function ffgrid (container, options, done) {
+        //No support for no csstransform browsers
+        if(!transformProp) { return false; }
+
         //Default Options
         var args = {
             item: '.ffgrid_item', //String
@@ -97,16 +100,12 @@
             itemIndex = itemsGutter.indexOf(itemIndex);
             var posX = itemsPosX[itemIndex];
             var posY = itemsGutter[itemIndex];
-            item.style.position = 'absolute';
-            if (!args.animate && transformProp) {
-                item.style[transformProp] = 'translate3D(' + posX + 'px,' + posY + 'px, 0)';
-            } else if(!args.animate && !transformProp) {
-                item.style['left'] = posX + 'px';
-                item.style['top'] = posY + 'px';
-            }
             itemsGutter[itemIndex] += item.getBoundingClientRect().height + gutterH;
             count = count + 1;
-            if (args.animate) {
+            item.style.position = 'absolute';
+            if (!args.animate) {
+                item.style[transformProp] = 'translate3D(' + posX + 'px,' + posY + 'px, 0)';
+            } else {
                 return args.animate(item, posX, posY, count);
             }
         });
