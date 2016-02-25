@@ -85,7 +85,7 @@
             count = count + 1;
             item.style.position = 'absolute';
             if (!args.animate) {
-                item.style[transformProp] = 'translate3D(' + posX + 'px,' + posY + 'px, 0)';
+                item.style[transformProp] = 'translate(' + posX + 'px,' + posY + 'px)';
             } else {
                 return args.animate(item, posX, posY, count);
             }
