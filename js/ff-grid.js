@@ -27,17 +27,6 @@
         }
     }());
 
-    //Foreach function
-    function forEach (arr, cb) {
-        if (arr) {
-            for (var i = 0, len = arr.length; i < len; i++) {
-                if (arr[i]) {
-                    cb(arr[i], i, arr);
-                }
-            }
-        }
-    }
-
     //Extend function
     function extend(origOptions, userOptions){
         var extendOptions = {}, attrname;
@@ -65,7 +54,7 @@
         var containerEle = container instanceof Node ? container : document.querySelector(container);
         if (!containerEle) { return false; }
         //Get items
-        var itemsNodeList = containerEle.querySelectorAll(args.item);
+        var itemsNodeList = [].slice.call(containerEle.querySelectorAll(args.item));
         if (itemsNodeList.length === 0) {
             containerEle.style.height = "0px";
             return false;
@@ -90,7 +79,7 @@
         }
 
         //Calcul of the items position
-        forEach(itemsNodeList, function (item) {
+        itemsNodeList.forEach(function(item) {
             var itemIndex = itemsGutter
             .slice(0)
             .sort(function (a, b) {
