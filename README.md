@@ -31,8 +31,13 @@ Add ff-grid.min.js before your closing tag.
 Initialize your grid in your script file or an inline script tag.
 
 ```js
-ffgrid('.ffgrid', options, done);
+ffgrid(container, options, done);
 ```
+
+
+- container: required, a string (".ffgrid" for example) or a node element.
+- options: optional, an option object, see below.
+- done: optional, a callback function.
 
 ##Options
 
@@ -48,7 +53,10 @@ The second parameter "options" is used to set several options:
 };
 ```
 
-The final parameter "done" is used to run a function once the grid has been initialized.
+- item: the class of the items of the grid (don't forgot the dot).
+- gutterH: the height of the vertical gutter. A number of pixel or "auto". If "auto" the vertical gutter will be equal to the horizontal gutter.
+- animate: a function that takes 3 parameters (item, x, y, index). See example in the demo section.
+- ext: a array of 2 booleans. First boolean is for horizontal gutter and second is for vertical gutter. If true there are external gutters. See example in the demo section.
 
 ##Responsive
 
