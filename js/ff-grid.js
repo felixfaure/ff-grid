@@ -27,31 +27,21 @@
         }
     }());
 
-    //Extend function
-    function extend(origOptions, userOptions){
-        var extendOptions = {}, attrname;
-        for (attrname in origOptions) { extendOptions[attrname] = origOptions[attrname]; }
-        for (attrname in userOptions) { extendOptions[attrname] = userOptions[attrname]; }
-        return extendOptions;
-    }
-
     //Main function
-    function ffgrid (container, options, done) {
+    //Args {
+    //  container: node or string
+    //  item: string
+    //  gutterH: number or "auto" (vertical gutter, auto => same as horizontal gutter)
+    //  animate: function
+    //  ext: array[boolean,boolean] ([horizontal,vertical])
+    //  done: function
+    //}
+    function ffgrid (args) {
         //No support for no csstransform browsers
         if(!transformProp) { return false; }
 
-        //Default Options
-        var args = {
-            item: '.ffgrid_item', //String
-            gutterH: "auto", //number or "auto"
-            animate: false, //Boolean
-            ext: [false,false] //Array of 2 booleans
-        };
-        //Fusion with user options
-        args = extend(args, options);
-
         //Get container element (with string or node element)
-        var containerEle = container instanceof Node ? container : document.querySelector(container);
+        var containerEle = args.container instanceof Node ? args.container : document.querySelector(args.container);
         if (!containerEle) { return false; }
         //Get items
         var itemsNodeList = [].slice.call(containerEle.querySelectorAll(args.item));
@@ -60,11 +50,13 @@
             return false;
         }
         //Get variables
+        args.ext = args.ext || [false,false];
+
         var containerWidth = containerEle.getBoundingClientRect().width;
         var firstChildWidth = itemsNodeList[0].getBoundingClientRect().width;
         var cols = Math.max(Math.floor(containerWidth / firstChildWidth), 1);
         var gutterW = (containerWidth - cols * firstChildWidth) / (cols - 1 + (args.ext[0] ? 2 : 0));
-        var gutterH = args.gutterH == "auto" ? gutterW : args.gutterH;
+        var gutterH = args.gutterH || gutterW;
         var count = 0;
 
         //Style relative for container
@@ -109,8 +101,8 @@
         containerEle.style.height = containerHeight - (args.ext[1] ? 0 : gutterH) + 'px';
 
         //Function when calculs are done
-        if (typeof done === 'function') {
-            done(itemsNodeList, containerEle);
+        if (typeof args.done === 'function') {
+            args.done(itemsNodeList, containerEle);
         }
     }
 
