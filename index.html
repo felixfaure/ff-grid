@@ -42,34 +42,24 @@
             <p>Add ff-grid.min.js before your closing <body> tag.</p>
             <pre><code class="language-html">&lt;script type="text/javascript" src="js/ff-grid.js"&gt;&lt;/script&gt;</code></pre>
             <p>Initialize your grid in your script file or an inline script tag.</p>
-            <pre><code class="language-javascript">ffgrid(container, options, done);</code></pre>
-            <ul>
-                <li>container: required, a string (".ffgrid" for example) or a node element.</li>
-                <li>options: optional, an option object, see below.</li>
-                <li>done: optional, a callback function.</li>
-            </ul>
+            <pre><code class="language-javascript">ffgrid({cont: '.ffgrid', item: '.ffgrid_item'});</code></pre>
 
-            <h2>Options</h2>
-            <p>The second parameter "options" is used to set several options:</p>
-<pre><code class="language-javascript">//Default options
-{
-    item: '.ffgrid_item', //string
-    gutterH: "auto", //number or "auto"
-    animate: false, //function
-    ext: [false, false] //array of 2 booleans
-};</code></pre>
+            <h2>Other options</h2>
+            <p>There are several options:</p>
             <ul>
-                <li>item: the class of the items of the grid (don't forgot the dot).</li>
-                <li>gutterH: the height of the vertical gutter. A number of pixel or "auto". If "auto" the vertical gutter will be equal to the horizontal gutter.</li>
-                <li>animate: a function that takes 3 parameters (item, x, y, index). See example in the demo section.</li>
-                <li>ext: a array of 2 booleans. First boolean is for horizontal gutter and second is for vertical gutter. If true there are external gutters. See example in the demo section.</li>
+                <li>cont: the container (node or string) [required]</li>
+                <li>item: selector of the grid items (string) [required]</li>
+                <li>gutter: vertical gutter, if not set => same as horizontal gutter (int)</li>
+                <li>animate: the animating function (function)</li>
+                <li>ext: external gutters (array[boolean,boolean] => [vertical,horizontal])</li>
+                <li>done: callback (function)</li>
             </ul>
 
             <h2>Responsive</h2>
             <p>While FF-Grid is ready for responsive it doesn't incorporate the resize listener, this allows you to adjust it as you like (with bouncing, etc.).</p>
             <p>For the grid fits the resizing you need to add this code:</p>
             <pre><code class="language-javascript">window.addEventListener('resize', function(){
-    ffgrid('.ffgrid',options,done);
+    ffgrid(args);
 });</code></pre>
 
             <h2>Examples</h2>
@@ -85,9 +75,9 @@
                 <div class="ffgrid_item ffgrid_item-h4"></div>
                 <div class="ffgrid_item"></div>
             </div>
-            <pre><code class="language-javascript">ffgrid('#ex1');
+            <pre><code class="language-javascript">ffgrid({cont: '#ex1', item: '.ffgrid_item'});
 window.addEventListener('resize', function(){
-    ffgrid('#ex1');
+    ffgrid{cont: '#ex1', item: '.ffgrid_item'};
 });</code></pre>
 
             <h3>Custom vertical gutter:</h3>
@@ -104,7 +94,7 @@ window.addEventListener('resize', function(){
                 <div class="ffgrid_item ffgrid_item-h3"></div>
                 <div class="ffgrid_item"></div>
             </div>
-            <pre><code class="language-javascript">ffgrid('#ex2',{gutterH: 5});</code></pre>
+            <pre><code class="language-javascript">ffgrid({cont: '#ex2', item: '.ffgrid_item', gutter: 5});</code></pre>
 
             <h3>External horizontal and vertical gutters (first boolean is horizontal and second is vertical):</h3>
             <div class="ffgrid" id="ex3">
@@ -115,7 +105,7 @@ window.addEventListener('resize', function(){
                 <div class="ffgrid_item ffgrid_item-h3"></div>
                 <div class="ffgrid_item ffgrid_item-h2"></div>
             </div>
-            <pre><code class="language-javascript">ffgrid('#ex3',{ext: [true, true]});</code></pre>
+            <pre><code class="language-javascript">ffgrid({cont: '#ex3', item: '.ffgrid_item', ext: [true, true]});</code></pre>
 
             <h3>Animation and done function:</h3>
             <p>To animate the position you can use CSS transtitions or an extarnal library like <a href="http://dynamicsjs.com/">Dynamics.js</a> or <a href="http://julian.com/research/velocity/">velocity</a>. This example use velocity:</p>
@@ -155,21 +145,26 @@ window.addEventListener('resize', function(){
                 <div class="ffgrid_item ffgrid_item-h4"></div>
                 <div class="ffgrid_item"></div>
             </div>
-            <pre><code class="language-javascript">ffgrid('#ex4',{animate: function(item, x, y, index) {
-    item.style.opacity = 0;
-    Velocity(item, {
-        translateX: [x, x-10],
-        translateY: [y, y+50],
-        rotateZ: ["0deg", "20deg"],
-        scale: [1, .5],
-        opacity: 1
-    }, {
-        duration: 500,
-        delay: index * 100
-    });
-}}, function(items,cont) {
-    //add a class when the grid is initialized
-    cont.className = cont.className.replace('is-init', '').replace(/\s+$/gi, '') + ' is-init';
+            <pre><code class="language-javascript">ffgrid({
+    cont: '#ex4',
+    item: '.ffgrid_item',
+    animate: function(item, x, y, index) {
+        item.style.opacity = 0;
+        Velocity(item, {
+            translateX: [x, x-10],
+            translateY: [y, y+50],
+            rotateZ: ["0deg", "20deg"],
+            scale: [1, .5],
+            opacity: 1
+        }, {
+            duration: 500,
+            delay: index * 100
+        });
+    },
+    done: function(items,cont) {
+        //add a class when the grid is initialized
+        cont.className = cont.className.replace('is-init', '').replace(/\s+$/gi, '') + ' is-init';
+    }
 });</code></pre>
         </main>
 
