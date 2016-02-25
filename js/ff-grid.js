@@ -35,7 +35,7 @@
   //Args {
   //  cont: node or string (container)
   //  item: string (selector of the grid items)
-  //  gutter: number or "auto" (vertical gutter, auto => same as horizontal gutter)
+  //  gutter: number or "auto" (vertical gutter, not set => same as horizontal gutter)
   //  animate: function (animate)
   //  ext: array[boolean,boolean] ([horizontal,vertical])
   //  done: function
